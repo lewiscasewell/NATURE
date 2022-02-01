@@ -99,6 +99,18 @@ export default function Home() {
           </Box>
         )}
       </Container>
+      <Container as="footer" maxW="xl" textAlign="center" py={10}>
+        <Text>
+          Made with{" "}
+          <span role="img" aria-label="heart emoji">
+            ❤️
+          </span>{" "}
+          by Lewis
+          {/* <Link href="http://robsoriano.com/" isExternal>
+                        Robert
+                    </Link> */}
+        </Text>
+      </Container>
     </Box>
   );
 }

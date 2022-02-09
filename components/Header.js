@@ -23,7 +23,7 @@ export default function Header({
   };
 
   return (
-    <Box position="fixed" w="100%" zIndex={1} backgroundColor="gray.800">
+    <Box position="fixed" w="100%" zIndex={1} backgroundColor="white">
       <Container
         maxW="xl"
         py={3}

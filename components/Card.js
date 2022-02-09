@@ -6,7 +6,7 @@ const Card = ({ post, onImageClick }) => {
     <Box
       borderRadius={["sm", null, "md"]}
       overflow="hidden"
-      backgroundColor="gray.700"
+      backgroundColor="gray.100"
     >
       <Box
         cursor="pointer"

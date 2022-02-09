@@ -1,16 +1,20 @@
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import { Box, Flex, Img, Text, Link } from "@chakra-ui/react";
 
-// const MotionImg = motion.custom(Img);
-
-const Card = ({ post }) => {
+const Card = ({ post, onImageClick }) => {
   return (
     <Box
       borderRadius={["sm", null, "md"]}
       overflow="hidden"
-      backgroundColor="gray.100"
+      backgroundColor="gray.700"
     >
-      <Box cursor="pointer" h="240px" position="relative" overflow="hidden">
+      <Box
+        cursor="pointer"
+        h="240px"
+        position="relative"
+        overflow="hidden"
+        onClick={() => onImageClick(post)}
+      >
         <Img w="100%" h="100%" objectFit="cover" src={post.src} />
       </Box>
       <Flex px="4" py="2" align="center" justify="space-between" w="100%">

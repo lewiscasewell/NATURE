@@ -17,9 +17,11 @@ import useRedditPosts, { transformPost } from "../lib/useRedditPosts";
 import Card from "../components/Card";
 import Header from "../components/Header";
 import { RepeatIcon } from "@chakra-ui/icons";
+import PreviewImage from "../components/PreviewImage";
 
 export default function Home() {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedPost, setSelectedPost] = useState(null);
   const [filter, setFilter] = useState("hot");
   const [subreddits, setSubreddits] = useState(SUBREDDITS);
 
@@ -58,9 +60,19 @@ export default function Home() {
     ? posts.filter(withMediaOnly).map((post) => transformPost(post))
     : [];
 
+  const view = (post) => {
+    setSelectedPost(post);
+    onOpen();
+  };
+
   return (
     <Box minHeight="100vh" display="flex" flexDir="column">
-      <Header filter={filter} setFilter={setFilter} />
+      <Header
+        filter={filter}
+        setFilter={setFilter}
+        subreddits={subreddits}
+        setSubreddits={setSubreddits}
+      />
       <Container maxW="xl" mt="95px" flex={1}>
         <Box textAlign="center">
           <Heading as="h1" size="4xl">
@@ -74,7 +86,7 @@ export default function Home() {
         </Box>
         <SimpleGrid spacing={5} mt={6}>
           {transformedPosts.map((post) => (
-            <Card key={post.id} post={post} />
+            <Card key={post.id} post={post} onImageClick={view} />
           ))}
 
           {(isLoadingInitialData || isLoadingMore) &&
@@ -99,6 +111,9 @@ export default function Home() {
           </Box>
         )}
       </Container>
+      {selectedPost && (
+        <PreviewImage isOpen={isOpen} onClose={onClose} post={selectedPost} />
+      )}
       <Container as="footer" maxW="xl" textAlign="center" py={10}>
         <Text>
           Made with{" "}

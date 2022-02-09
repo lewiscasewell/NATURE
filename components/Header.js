@@ -9,20 +9,21 @@ import {
   MenuList,
   MenuOptionGroup,
 } from "@chakra-ui/react";
+import { SUBREDDITS } from "../lib/constants";
 import { FilterIcon } from "../styles/icons";
 
 export default function Header({
   filter,
   setFilter,
   subreddits,
-  setSubReddits,
+  setSubreddits,
 }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <Box position="fixed" w="100%" zIndex={1} backgroundColor="white">
+    <Box position="fixed" w="100%" zIndex={1} backgroundColor="gray.800">
       <Container
         maxW="xl"
         py={3}
@@ -50,6 +51,27 @@ export default function Header({
                 <MenuItemOption value="hot">Hot</MenuItemOption>
                 <MenuItemOption value="new">New</MenuItemOption>
                 <MenuItemOption value="top">Top</MenuItemOption>
+              </MenuOptionGroup>
+              <MenuOptionGroup
+                title="Subreddits"
+                type="checkbox"
+                defaultValue={subreddits}
+                onChange={(val) => {
+                  setSubreddits(val);
+                  scrollToTop();
+                }}
+              >
+                {SUBREDDITS.map((sub, idx) => (
+                  <MenuItemOption
+                    key={idx}
+                    value={sub}
+                    isDisabled={
+                      subreddits.length === 1 && subreddits.includes(sub)
+                    }
+                  >
+                    r/{sub}
+                  </MenuItemOption>
+                ))}
               </MenuOptionGroup>
             </MenuList>
           </Menu>

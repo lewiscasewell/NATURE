@@ -39,7 +39,9 @@ export default function Header({
     });
   }, []);
 
-  const downloadPWA = () => {};
+  const downloadPWA = () => {
+    deferredInstall.prompt();
+  };
 
   return (
     <Box position="fixed" w="100%" zIndex={1} backgroundColor="white">
@@ -59,7 +61,7 @@ export default function Header({
             variant="ghost"
             mr={1}
             aria-label="Download"
-            onClick={deferredInstall.prompt()}
+            onClick={downloadPWA}
           />
 
           <Menu closeOnSelect={false}>

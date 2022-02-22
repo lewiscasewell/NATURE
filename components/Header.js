@@ -36,11 +36,12 @@ export default function Header({
       deferredInstall = e;
 
       console.log("saved the deferred install");
+      console.log(deferredInstall);
     });
   }, []);
 
   const downloadPWA = () => {
-    deferredInstall.prompt();
+    () => deferredInstall.prompt();
   };
 
   return (

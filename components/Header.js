@@ -36,16 +36,24 @@ export default function Header({
       deferredInstall = e;
 
       console.log("saved the deferred install");
-      console.log(deferredInstall);
     });
-  }, []);
+  }, [deferredInstall]);
 
   const downloadPWA = () => {
-    () => deferredInstall.prompt();
+    window.addEventListener("beforeinstallprompt", (e) => {
+      console.log(e);
+
+      e.preventDefault();
+
+      deferredInstall = e;
+
+      console.log("saved the deferred install");
+      deferredInstall.prompt();
+    });
   };
 
   return (
-    <Box position="fixed" w="100%" zIndex={1} backgroundColor="white">
+    <Box position="fixed" w="100%" zIndex={1} backgroundColor="black">
       <Container
         maxW="xl"
         py={3}

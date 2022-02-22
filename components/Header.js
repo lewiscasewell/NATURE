@@ -1,3 +1,5 @@
+import * as React from "react";
+import { DownloadIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -11,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { SUBREDDITS } from "../lib/constants";
 import { FilterIcon } from "../styles/icons";
+// import { useAddToHomescreenPrompt } from "../lib/useAddToHomeScreenPrompt";
 
 export default function Header({
   filter,
@@ -21,6 +24,22 @@ export default function Header({
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  let deferredInstall;
+
+  React.useEffect(() => {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      console.log(e);
+
+      e.preventDefault();
+
+      deferredInstall = e;
+
+      console.log("saved the deferred install");
+    });
+  }, []);
+
+  const downloadPWA = () => {};
 
   return (
     <Box position="fixed" w="100%" zIndex={1} backgroundColor="white">
@@ -35,6 +54,14 @@ export default function Header({
           NATURE
         </Button>
         <Box>
+          <IconButton
+            icon={<DownloadIcon />}
+            variant="ghost"
+            mr={1}
+            aria-label="Download"
+            onClick={deferredInstall.prompt()}
+          />
+
           <Menu closeOnSelect={false}>
             <MenuButton as={IconButton} variant="ghost" icon={<FilterIcon />} />
 

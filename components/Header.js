@@ -27,33 +27,33 @@ export default function Header({
 
   let deferredInstall;
 
-  React.useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (e) => {
-      console.log(e);
+  // React.useEffect(() => {
+  //   window.addEventListener("beforeinstallprompt", (e) => {
+  //     console.log(e);
 
-      e.preventDefault();
+  //     e.preventDefault();
 
-      deferredInstall = e;
+  //     deferredInstall = e;
 
-      console.log("saved the deferred install");
-    });
-  }, [deferredInstall]);
+  //     console.log("saved the deferred install");
+  //   });
+  // }, [deferredInstall]);
 
   const downloadPWA = () => {
     window.addEventListener("beforeinstallprompt", (e) => {
       console.log(e);
 
-      e.preventDefault();
+      e.prompt();
 
-      deferredInstall = e;
+      // deferredInstall = e;
 
-      console.log("saved the deferred install");
-      deferredInstall.prompt();
+      // console.log("saved the deferred install");
+      // deferredInstall.prompt();
     });
   };
 
   return (
-    <Box position="fixed" w="100%" zIndex={1} backgroundColor="black">
+    <Box position="fixed" w="100%" zIndex={1} backgroundColor="white">
       <Container
         maxW="xl"
         py={3}

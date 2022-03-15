@@ -14,7 +14,9 @@ const Head = ({ title, description }) => {
       <meta property="og:description" content={description} />
       <link rel="manifest" href="/manifest.json" />
       <link rel="icon" href="/favicon.ico" />
-      <meta name="theme-color" content="#000000" />{" "}
+      <link rel="apple-touch-icon" href="/img/icons/192.png" />
+      <meta name="apple-mobile-web-app-status-bar" content="#aa7700" />
+      <meta name="theme-color" content="#fff" />{" "}
     </NextHead>
   );
 };

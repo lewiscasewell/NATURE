@@ -2,8 +2,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {
   Box,
   Button,
-  Flex,
-  HStack,
   Img,
   Link,
   Modal,
@@ -14,15 +12,16 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-  Tooltip,
   useBreakpointValue,
 } from "@chakra-ui/react";
+
 import { Carousel } from "react-responsive-carousel";
+
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 export default function PreviewImage({ isOpen, onClose, post }) {
   const size = useBreakpointValue({ base: "md", md: "2xl" });
-  const imageMarginTop = !post.awards.length ? 3 : 0;
+  const imageMarginTop = 3;
 
   return (
     <Modal
@@ -36,7 +35,7 @@ export default function PreviewImage({ isOpen, onClose, post }) {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          <HStack spacing={2}>
+          {/* <HStack spacing={2}>
             {post.awards.map((award, index) => {
               return (
                 <Tooltip
@@ -55,7 +54,7 @@ export default function PreviewImage({ isOpen, onClose, post }) {
                 </Tooltip>
               );
             })}
-          </HStack>
+          </HStack> */}
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>

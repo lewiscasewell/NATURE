@@ -1,5 +1,5 @@
-import * as React from "react";
-import { DownloadIcon } from "@chakra-ui/icons";
+import { useEffect, useState } from "react";
+
 import {
   Box,
   Button,
@@ -10,10 +10,12 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
+  Tooltip,
 } from "@chakra-ui/react";
+
 import { SUBREDDITS } from "../lib/constants";
+
 import { FilterIcon } from "../styles/icons";
-// import { useAddToHomescreenPrompt } from "../lib/useAddToHomeScreenPrompt";
 
 export default function Header({
   filter,
@@ -25,57 +27,21 @@ export default function Header({
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  let deferredInstall;
-
-  // React.useEffect(() => {
-  //   window.addEventListener("beforeinstallprompt", (e) => {
-  //     console.log(e);
-
-  //     e.preventDefault();
-
-  //     deferredInstall = e;
-
-  //     console.log("saved the deferred install");
-  //   });
-  // }, [deferredInstall]);
-
-  const downloadPWA = () => {
-    window.addEventListener("beforeinstallprompt", (e) => {
-      console.log(e);
-
-      e.prompt();
-
-      // deferredInstall = e;
-
-      // console.log("saved the deferred install");
-      // deferredInstall.prompt();
-    });
-  };
-
   return (
-    <Box position="fixed" w="100%" zIndex={1} backgroundColor="white">
+    <Box w="100%" position="fixed" zIndex={1} backgroundColor="white">
       <Container
-        maxW="xl"
         py={3}
         display="flex"
         justifyContent="space-between"
         alignItems="center"
+        maxW="container.xl"
       >
         <Button variant="ghost" fontSize="xl" onClick={scrollToTop}>
           NATURE
         </Button>
         <Box>
-          <IconButton
-            icon={<DownloadIcon />}
-            variant="ghost"
-            mr={1}
-            aria-label="Download"
-            onClick={downloadPWA}
-          />
-
           <Menu closeOnSelect={false}>
             <MenuButton as={IconButton} variant="ghost" icon={<FilterIcon />} />
-
             <MenuList>
               <MenuOptionGroup
                 title="Filter"

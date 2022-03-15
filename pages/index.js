@@ -8,15 +8,17 @@ import {
   Skeleton,
   Button,
   useDisclosure,
+  Center,
 } from "@chakra-ui/react";
+import { RepeatIcon } from "@chakra-ui/icons";
 
 import { useState } from "react";
 
 import { SUBREDDITS, PAGE_LIMIT } from "../lib/constants";
 import useRedditPosts, { transformPost } from "../lib/useRedditPosts";
+
 import Card from "../components/Card";
 import Header from "../components/Header";
-import { RepeatIcon } from "@chakra-ui/icons";
 import PreviewImage from "../components/PreviewImage";
 
 export default function Home() {
@@ -73,7 +75,8 @@ export default function Home() {
         subreddits={subreddits}
         setSubreddits={setSubreddits}
       />
-      <Container maxW="xl" mt="95px" flex={1}>
+
+      <Container maxWidth="container.xl" mt="95px">
         <Box textAlign="center">
           <Heading as="h1" size="4xl">
             NATURE
@@ -84,7 +87,13 @@ export default function Home() {
             }
           </Text>
         </Box>
-        <SimpleGrid spacing={5} mt={6}>
+
+        <SimpleGrid
+          flex={1}
+          columns={{ base: 1, md: 2, lg: 3 }}
+          spacing={5}
+          mt={6}
+        >
           {transformedPosts.map((post) => (
             <Card key={post.id} post={post} onImageClick={view} />
           ))}
@@ -114,16 +123,17 @@ export default function Home() {
       {selectedPost && (
         <PreviewImage isOpen={isOpen} onClose={onClose} post={selectedPost} />
       )}
-      <Container as="footer" maxW="xl" textAlign="center" py={10}>
+
+      <Container as="footer" textAlign="center" py={10}>
         <Text>
-          Made with{" "}
-          <span role="img" aria-label="heart emoji">
-            ❤️
-          </span>{" "}
-          by Lewis
-          {/* <Link href="" isExternal>
-                        Lewis
-                    </Link> */}
+          For more from me, visit{" "}
+          <Link
+            color="cyan.700"
+            href="https://www.lewiscasewell.com"
+            isExternal
+          >
+            Lewis Casewell
+          </Link>
         </Text>
       </Container>
     </Box>
